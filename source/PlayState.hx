@@ -12,6 +12,7 @@ import js.Browser;
 import lime.app.Future;
 import openfl.media.Sound;
 
+// a mix between JSHTML Example and FutureUsage Example
 class PlayState extends FlxState
 {
 	var musicReq = Browser.createXMLHttpRequest();
