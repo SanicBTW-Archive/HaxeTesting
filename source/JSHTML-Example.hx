@@ -11,6 +11,7 @@ import flixel.util.FlxColor;
 import haxe.Json;
 import js.Browser;
 
+// this is an example of browser.createxmlhttprequest(); function, also using js.html audio to play audio and shit
 class PlayState extends FlxState
 {
 	var musicReq = Browser.createXMLHttpRequest();
@@ -35,9 +36,11 @@ class PlayState extends FlxState
 
 		add(musicItems);
 
+		// Setup the XML Request
 		musicReq.addEventListener("load", function(event)
 		{
 			var curItemPos = 360;
+			// Add items based on the response
 			var musicList:Dynamic = cast Json.parse(musicReq.responseText).items;
 			for (i in 0...musicList.length)
 			{
@@ -46,7 +49,9 @@ class PlayState extends FlxState
 				curItemPos -= 45;
 			}
 		});
+		// Open it
 		musicReq.open("GET", "http://sancopublic.ddns.net:5430/api/collections/music/records");
+		// Send it
 		musicReq.send();
 
 		htmlAudio.addEventListener('durationchange', function()
